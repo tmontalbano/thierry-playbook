@@ -1,0 +1,92 @@
+---
+
+#
+# Creates the admin users on all the machines
+#
+
+- name: create groups
+  group:
+    name: "{{ item.name }}"
+    state: present
+    system: yes
+  with_items:
+    "{{ users_groups }}"
+
+- name: setup sudoers access for a group
+  copy:
+    content: "{{ item.sudo }}"
+    dest: "/etc/sudoers.d/{{ item.name }}"
+    owner: root
+    group: root
+    mode: 0440
+  when: item.sudo is defined
+  with_items:
+    "{{ users_groups }}"
+
+- name: create users
+  user:
+    name: "{{ item.username }}"
+    shell: "{{ item.shell }}"
+    group: users
+    groups: "{{ item.groups | default('') }}"
+    createhome: yes
+    home: "{{ item.home | default(home_folder) }}/{{ item.username }}"
+  with_items:
+    "{{ create_users }}"
+
+- name: create .ssh folder under user directory
+  file:
+    state: directory
+    path: "{{ item.home | default(home_folder) }}/{{ item.username }}/.ssh"
+    group: users
+    owner: "{{ item.username }}"
+    mode: 0700
+  with_items:
+    "{{ create_users }}"
+
+- name: create users ssh key
+  copy:
+    content: "{{ item.authorized_keys }}"
+    dest: "{{ item.home | default(home_folder) }}/{{ item.username }}/.ssh/authorized_keys"
+    group: users
+    owner: "{{ item.username }}"
+    mode: 0600
+  with_items:
+    "{{ create_users }}"
+
+- name: setup bashrc file
+  template:
+    src: "bashrc.sh.j2"
+    dest: "{{ item.home | default(home_folder) }}/{{ item.username }}/.bashrc"
+    group: users
+    owner: "{{ item.username }}"
+    mode: 0644
+  with_items:
+    "{{ create_users }}"
+
+- name: setup bash aliases
+  template:
+    src: "bashrc.sh.j2"
+    dest: "{{ item.home | default(home_folder) }}/{{ item.username }}/.bash_profile"
+    group: users
+    owner: "{{ item.username }}"
+    mode: 0644
+  with_items:
+    "{{ create_users }}"
+
+- name: delete old users
+  user:
+    name: "{{ item }}"
+    state: absent
+    remove: yes
+  with_items:
+    "{{ delete_users }}"
+  tags:
+    - delete_users
+
+- name: change azure user password
+  user:
+    name: "{{ azure_user }}"
+    password: "{{ azure_user_password }}"
+    update_password: always
+  ignore_errors: yes

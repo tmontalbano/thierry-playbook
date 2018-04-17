@@ -1,0 +1,21 @@
+---
+
+- name: reload ssh
+  service:
+    name: ssh
+    state: reloaded
+
+- name: restart ssh
+  service:
+    name: ssh
+    state: restarted
+
+- name: stop ssh
+  service:
+    name: ssh
+    state: stopped
+
+- name: start ssh
+  service:
+    name: ssh
+    state: started

@@ -1,0 +1,15 @@
+---
+
+#
+# Common configuration to all servers.
+## This file MUST be included in all the playbook definitions.
+#
+
+- name: apply common configuration to all nodes
+  hosts: all
+  user: thierry.montalbano
+#  become: yes
+  become_method: sudo
+
+  roles:
+    - { role: common, tags: ['common'] }

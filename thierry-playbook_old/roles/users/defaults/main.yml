@@ -1,0 +1,52 @@
+---
+
+#
+# We DevOps
+#
+
+home_folder: "/home"
+
+users_groups:
+  - name: devops
+    sudo: "%devops ALL=(ALL) NOPASSWD: ALL"
+  - name: users
+  - name: developers
+
+#
+# Go see in the group_vars/all.yml
+#
+create_users: []
+#create_users:
+#  - username: drivard
+#    groups: "devops,adm"
+#    authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDW9a+NXbj/B40tx4v1qy5p13GXWrVpL+QdZ1C4HdlyS77zqa+Yz6DOfcR/q6UyxhSByxu0JNW11i1zSQi3qdOY7+ypzsUoWPPkI4JG1GnzLom8NZ+j5F7K2Q8fMLNQPa8AS4Jpj74AdUcaAC1fJkWtqR7KU1pBZ1yTUi7t+IexE9YAVeXA/0oW3ePxnPaDwu4ug1Iec3g1ZXWFuNH8Ocdubnd283CefUUFIPkMgnHf2MLdQHR6nctE0iKvJuK7G2xeQ71KMzjcxHxMa4561PqU5h7+hIhxFB+vLSgL44hNrSZba5HvdfFRNrIFASTz0yO/SvKv4Ps/JNWVLImbvehv"
+#    shell: "/bin/bash"
+#    aliases: ['alias ls="ls -lh --color"', 'alias grep="grep --color "', 'alias up="sudo apt update; sudo apt full-upgrade -y; sudo apt remove -y; sudo apt autoclean -y;"']
+#  - username: xlopez
+#    groups: "devops,adm"
+#    authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/kBt5aa2OhzDSIM943KFUXq8poBfVcWel2Ou/sG8dRjTzQq/eFtcT+4Q4EZp+vY4jAvSerQY/phFeGdreqMBoeMcqpIoO5loczbUAI7LCyn3Cm9Pe1v+JbDnra5ite0ctsAyDS4wGB/rZ0SQLISYpvF7alK+y6LQc+4HMCyrkVO5Yy9t5e7jHQ2OCUr6qln80jCFdxpq4c9FHMjv/5AamCC3BB49FN0ZltdmiRUP+lUJ2r4uWCsR3QKS9R93dYorkjLvHlDKNPmHvvnOEXGUyOcuvezeKLd3YMFZSRo8rvvydNcFRQ42DoyQXzmfqJBJP3OD38cN4vfXxze4/DkXd"
+#    shell: "/bin/bash"
+#  - username: hmichaud
+#    groups: "devops,adm"
+#    authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1cgNA1CoP6H2PN63c7AMT42fnLWIABdPCCuqBegIP59ZyHrudargxvul0PN+knP1j8Y6KNU9FnUBhFRsl30s7JcrO+t4SJ89SsBbZbCFqWir2ONPdYQIkxED1JEn6FtdDrO44mDMEIv0Hv7iSo1a1r6TVVBobrzhIuli4bhZvNVRqjdlD6LXj3N2xYFQ4oXprvCx7GKanmLhnZeASFLjNbsD9APlJz5t/0wEklChXgYZ9dw+cFpjHMZdZE0TDrwOSQhVu6aEis0cYfGPaR1Um3XDxaS7L31sOb7XACzy+PqwMzZ6xRsSGf7h8pX2xEcqMQ1ZjZSnbTAK0yI+WLXj1"
+#    shell: "/bin/bash"
+#  - username: jenkins
+#    groups: "devops,adm"
+#    authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3GdWZDmsMYTlG7JwocTwi7HfPcLD80iQT2xOD/z+/ywbcsUpNjxSW1D7NYqEPTCfdVY73HwwInKwLhzQM/lKxD/sNrM5G6l5TxQD4aut6/6OM0JCOZQPEpiVS/Cz0UZnSBwEUAzeNZaJFeKBnV0ZkTjx6atwzx5IOK2WpUWM62L6KQsqf4r7g43ibfsy2kavUlYdTWSkwmg7ZXhEzKZKOex784M2lDdqRSpHVnCpSbe6E+D7X+FydtgtuMraIDLNDqsxjRkGLVgGLgN6gvodAUSb+DH3et0mO7dnLr0vbauJXxkULkRHg7zfeO1kr5ajUAM7xaos07RVXDtgs/L7P"
+#    shell: "/bin/bash"
+#    home: "/var/lib"
+#  - username: developer_username
+#    authorized_keys: ""
+#    shell: "/bin/bash"
+
+
+# Deleted Users
+delete_users:
+  - 'nfortier'
+  - 'ssenechal'
+  - 'drivard'
+
+
+# Azure User
+azure_user: "azureuser"
+azure_user_password: "{{ vault_azure_user_password }}"
