@@ -6,9 +6,9 @@
 #  timezone:
 #    name: America/Toronto
 
-- name: remove common packages
+- name: install common packages
   package:
     name: "{{ item }}"
-    state: absent
+    state: absent 
   with_items:
     "{{ packages }}"

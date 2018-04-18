@@ -7,7 +7,7 @@
 
 - name: uninstallation to all nodes
   hosts: all
-  user: thierry.montalba
+#  user: thierry.montalba
 #  become: yes
   become_method: sudo
 
