@@ -6,7 +6,7 @@
 #
 
 - name: apply common configuration to all nodes
-  hosts: all
+  hosts: batch1 
   user: thierry.montalbano
   become: yes
   become_method: sudo
