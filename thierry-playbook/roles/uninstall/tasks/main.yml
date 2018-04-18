@@ -1,0 +1,14 @@
+---
+
+# Common module for all the servers
+
+#- name: set timezone to America/Toronto
+#  timezone:
+#    name: America/Toronto
+
+- name: remove common packages
+  package:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    "{{ packages }}"

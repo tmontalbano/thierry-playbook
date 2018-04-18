@@ -1,0 +1,15 @@
+---
+
+#
+# Common configuration to all servers.
+## This file MUST be included in all the playbook definitions.
+#
+
+- name: uninstallation to all nodes
+  hosts: all
+  user: thierry.montalba
+#  become: yes
+  become_method: sudo
+
+  roles:
+    - { role: uninstall, tags: ['uninstall'] }
