@@ -6,7 +6,7 @@
 #
 
 - name: apply common configuration to all nodes
-  hosts: extranet 
+  hosts: intranet 
   user: thierry.montalbano
   become: yes
   become_method: sudo
