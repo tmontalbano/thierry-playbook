@@ -1,4 +1,4 @@
-[clients]
+[extranet]
 52.242.32.165
-[servers]
-52.235.17.227
+[intranet]
+10.0.0.4
