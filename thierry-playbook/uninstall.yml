@@ -6,7 +6,7 @@
 #
 
 - name: uninstallation to all nodes
-  hosts: clients 
+  hosts: extranet 
 #  user: thierry.montalba
   become: yes
   become_method: sudo
