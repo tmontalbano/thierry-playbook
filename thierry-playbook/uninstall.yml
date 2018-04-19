@@ -6,7 +6,7 @@
 #
 
 - name: uninstallation to all nodes
-  hosts: batch-1 
+  hosts: clients 
 #  user: thierry.montalba
   become: yes
   become_method: sudo
